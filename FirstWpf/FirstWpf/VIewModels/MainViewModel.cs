@@ -35,6 +35,7 @@ namespace FirstWpf.VIewModels
 
         public MainViewModel()
         {
+            AddBtnClickCommand = new RelayCommmand(new DoIt());
             LoadData();
         }
 
