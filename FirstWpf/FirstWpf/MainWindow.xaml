@@ -37,15 +37,15 @@
             <TextBox Text="{Binding Title}" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Stretch" Margin="10"/>
 
             <Label Content="Preis" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Stretch" Margin="10" Text="{Binding Price}"/>
+            <TextBox Text="{Binding Price}" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Stretch" Margin="10"/>
 
             <Label Content="Menge" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Stretch" Margin="10"/>
+            <TextBox Text="{Binding Amount}" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Stretch" Margin="10"/>
             <Button  Content="Hinzufügen" Grid.Column="1" Margin="10" Grid.Row="4" Height="25"/>
 
 
         </Grid>
-        <DataGrid Grid.Column="1" Margin="10" Grid.Row="1"/>
+        <DataGrid ItemsSource="{Binding Items}" Grid.Column="1" Margin="10" Grid.Row="1"/>
 
 
     </Grid>

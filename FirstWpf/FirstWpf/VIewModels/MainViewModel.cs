@@ -10,7 +10,8 @@ namespace FirstWpf.VIewModels
     {
         private double price=100;
         private string title = "DemoTitle";
-        private int amount;
+        private int amount=0;
+        private List<ItemVm> items = new List<ItemVm> ();
 
         #region PROPERTIES
         public double Price
@@ -24,11 +25,27 @@ namespace FirstWpf.VIewModels
             get { return title; }
             set { title = value; }
         }
+
+        public int Amount
+        {
+            get { return amount; }
+            set { amount = value;  }
+        }
         #endregion 
 
         public MainViewModel()
         {
-            
+            LoadData();
         }
+
+        private void LoadData()
+        {
+
+            items.Add(new ItemVm("Testeintrag", 10.5, 5));
+            items.Add(new ItemVm("Testeintrag2", 15.5, 2));
+            items.Add(new ItemVm("Testeintrag3", 1.5, 3));
+        }
+
+
     }
 }
