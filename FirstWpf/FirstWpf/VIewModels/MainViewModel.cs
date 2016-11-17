@@ -1,5 +1,8 @@
-﻿using System;
+﻿
+using FirstWpf.Commands;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +13,16 @@ namespace FirstWpf.VIewModels
     {
         private double price=100;
         private string title = "DemoTitle";
-        private int amount=0;
-        private List<ItemVm> items = new List<ItemVm> ();
+        private int amount;
+        ObservableCollection<ItemVM> items = new ObservableCollection<ItemVM>();
 
         #region PROPERTIES
+        public RelayCommand AddBtnClickedCommand { get; set; }
+        public int Amount
+        {
+            get { return amount; }
+            set { amount = value; }
+        }
         public double Price
         {
             get { return price; }
@@ -26,27 +35,36 @@ namespace FirstWpf.VIewModels
             set { title = value; }
         }
 
-        public int Amount
+        public ObservableCollection<ItemVM> Items
         {
-            get { return amount; }
-            set { amount = value;  }
+            get
+            {
+                return items;
+            }
+
+            set
+            {
+                items = value;
+            }
         }
-        #endregion 
+        #endregion
 
         public MainViewModel()
         {
-            AddBtnClickCommand = new RelayCommmand(new DoIt());
+            AddBtnClickedCommand = new RelayCommand(new LetsDoIt(AddItems));
             LoadData();
+        }
+
+        private void AddItems()
+        {
+            Items.Add(new ItemVM(Title, Amount, Price));
         }
 
         private void LoadData()
         {
-
-            items.Add(new ItemVm("Testeintrag", 10.5, 5));
-            items.Add(new ItemVm("Testeintrag2", 15.5, 2));
-            items.Add(new ItemVm("Testeintrag3", 1.5, 3));
+            Items.Add(new ItemVM("DemoEntry1", 10, 10.5));
+            Items.Add(new ItemVM("DemoEntry2", 50, 32.45));
+            Items.Add(new ItemVM("DemoEntry3", 34, 965));
         }
-
-
     }
 }
