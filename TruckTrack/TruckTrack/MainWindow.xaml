@@ -7,6 +7,32 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" MinHeight="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="80*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" >
+            <Button  x:Name="button" Content="Start generating" Margin="10" Command="{Binding StartBtnClickCmd}"/>
+            <Button x:Name="button2" Content="Stop Generating" Margin="10" Command="{Binding EndBtnClickCmd}"/>
+        </StackPanel>
+        <Button x:Name="button1" Content="Clear" HorizontalAlignment="Stretch" Margin="10" Grid.Row="3" VerticalAlignment="Center"  Grid.ColumnSpan="4" Command="{Binding ClearBtnCmd}"/>
+        <Label x:Name="label" Content="Waiting for" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Center"/>
+        <Label x:Name="label1" Content="Ready:" Grid.Column="2" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Details:" Grid.Column="3" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top"/>
+        <DataGrid Grid.Column="3" HorizontalAlignment="Stretch" Margin="10" Grid.Row="2" VerticalAlignment="Stretch"
+                  ItemsSource="{Binding SelectedReadyTruck.Loads}"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Stretch" Margin="10" Grid.Row="2" VerticalAlignment="Stretch" ItemsSource="{Binding WaitingTrucks}" SelectedItem="{Binding SelectedWaitingTruck}"/>
+        <ListBox x:Name="listBox1" Grid.Column="2" HorizontalAlignment="Stretch" Margin="10" Grid.Row="2" VerticalAlignment="Stretch" ItemsSource="{Binding ReadyTrucks}" SelectedItem="{Binding SelectedReadyTruck}" />
+        <Button x:Name="button3" Content="&gt;&gt;" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" Grid.Row="2" VerticalAlignment="Center" Command="{Binding SendBtnClickCmd}" />
+        <Button x:Name="button4" Content="Save" Grid.Column="3" HorizontalAlignment="Right" Margin="10" Grid.Row="4" VerticalAlignment="Center" Width="75"/> 
     </Grid>
 </Window>
