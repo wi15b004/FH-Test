@@ -45,8 +45,9 @@ namespace Dojo3.ViewModel
             }
         }
 
-        private List<StockEntryViewModel> stock;
         private ObservableCollection<StockEntryViewModel> items = new ObservableCollection<StockEntryViewModel>();
+        private Currencies selectedCurrency;
+        //private List<StockEntryViewModel> stock;
 
         public ObservableCollection<StockEntryViewModel> Items
         {

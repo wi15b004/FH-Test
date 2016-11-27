@@ -8,7 +8,7 @@
         xmlns:vm="clr-namespace:Dojo3.ViewModel"
         Title="MainWindow" Height="350" Width="525">
     <Window.DataContext>
-        <vm:MainViewModel></vm:MainViewModel>
+        <vm:MainViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -19,7 +19,16 @@
         <DataGrid HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding Items}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Group" Binding="{Binding Group}"/>
                 <DataGridTextColumn Header="Salesprice" Binding="{Binding SalesPrice}"/>
+                <DataGridTextColumn Header="Purchaseprice" Binding="{Binding PurchasePrice}"/>
+                <DataGridTemplateColumn Header="onStock">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Ellipse Height="15" Width="15" Fill="{Binding onStock, Converter={StaticResource IntTobrushConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <ComboBox HorizontalAlignment="Left" Margin="5,0" VerticalAlignment="Center" Width="120" ItemsSource="{Binding Currencies}" SelectedItem="{Binding Selectedcurrency}"/>
