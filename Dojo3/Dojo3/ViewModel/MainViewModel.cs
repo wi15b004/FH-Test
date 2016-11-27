@@ -1,4 +1,7 @@
+using CodingDojo4DataLib;
 using GalaSoft.MvvmLight;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Dojo3.ViewModel
 {
@@ -14,21 +17,33 @@ namespace Dojo3.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    class MainViewModel : BaseViewModel
     {
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
+        /// 
+
+        private List<StockEntryViewModel> stock;
+        private ObservableCollection<StockEntryViewModel> items = new ObservableCollection<StockEntryViewModel>();
+
+        public ObservableCollection<StockEntryViewModel> Items
+        {
+
+            get { return items; }
+            set
+            {
+                items value;
+            }
+
+        }
+
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            SampleManager manager = new SampleManager();
+            stock = manager.CurrentStock.OnStock;
+
+
         }
     }
 }
