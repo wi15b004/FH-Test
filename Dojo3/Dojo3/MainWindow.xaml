@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dojo3"
         mc:Ignorable="d"
+        xmlns:vm="clr-namespace:Dojo3.ViewModel"
         Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <vm:MainViewModel></vm:MainViewModel>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -14,9 +18,8 @@
         </Grid.RowDefinitions>
         <DataGrid HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding Items}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name"/>
-                <DataGridTextColumn Header="Group"/>
-                <DataGridTextColumn Header="Salesprice"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Salesprice" Binding="{Binding SalesPrice}"/>
             </DataGrid.Columns>
         </DataGrid>
         <ComboBox HorizontalAlignment="Left" Margin="5,0" VerticalAlignment="Center" Width="120" ItemsSource="{Binding Currencies}" SelectedItem="{Binding Selectedcurrency}"/>

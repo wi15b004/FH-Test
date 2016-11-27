@@ -1,5 +1,7 @@
 using CodingDojo4DataLib;
+using CodingDojo4DataLib.Converter;
 using GalaSoft.MvvmLight;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -19,30 +21,48 @@ namespace Dojo3.ViewModel
     /// </summary>
     class MainViewModel : BaseViewModel
     {
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
-        /// 
+
+        public Array Currencies
+        {
+            get {  return Enum.GetValues(typeof(Currencies));}
+        }
+
+        public Currencies SelectedCurrrency
+        {
+            get { return SelectedCurrrency; }
+            set {
+                SelectedCurrrency = value;
+                OnChange("SelectedCurrency");
+                StartConvertion();
+            }  
+       }
+
+        private void StartConvertion()
+        {
+            foreach (var item in Items)
+            {
+                item.CalculateSalesPriceFromEuro(SelectedCurrrency);
+            }
+        }
 
         private List<StockEntryViewModel> stock;
         private ObservableCollection<StockEntryViewModel> items = new ObservableCollection<StockEntryViewModel>();
 
         public ObservableCollection<StockEntryViewModel> Items
         {
-
             get { return items; }
-            set
-            {
-                items value;
-            }
-
+            set { items value; }
         }
 
         public MainViewModel()
         {
             SampleManager manager = new SampleManager();
-            stock = manager.CurrentStock.OnStock;
+            //stock = manager.CurrentStock.OnStock;
 
+            foreach (var item in manager.CurrentStock.OnStock)
+            {
+                Items.Add(new StockEntryViewModel(item));
+            }
 
         }
     }

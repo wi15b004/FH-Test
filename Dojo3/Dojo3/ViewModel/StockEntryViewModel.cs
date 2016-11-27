@@ -1,4 +1,5 @@
 ﻿using CodingDojo4DataLib;
+using CodingDojo4DataLib.Converter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,12 @@ namespace Dojo3.ViewModel
         public StockEntryViewModel(StockEntry entry)
         {
             stockEntry = entry;
+            salespriceinEuro = entry.SoftwarePackage.SalesPrice;
+        }
+
+        public void CalculateSalesPriceFromEuro(Currencies currency)
+        {
+            this.SalesPrice = CurrencyConverter.ConvertFromEuroTo(currency, salespriceinEuro);
         }
 
     }
