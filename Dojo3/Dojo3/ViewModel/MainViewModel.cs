@@ -1,5 +1,6 @@
 using CodingDojo4DataLib;
 using CodingDojo4DataLib.Converter;
+using Dojo3.Converters;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -21,50 +22,123 @@ namespace Dojo3.ViewModel
     /// </summary>
     class MainViewModel : BaseViewModel
     {
+        private SampleManager manager = new SampleManager(); 
+        private const string showAll = "show All";
+        private ObservableCollection<StockEntryViewModel> items = new ObservableCollection<StockEntryViewModel>();
+        private ObservableCollection<StockEntryViewModel> filteredItems = new ObservableCollection<StockEntryViewModel>();
+        private ObservableCollection<String> unfilteredItemNames = new ObservableCollection<String>();
+        private string filter;
+        private RelayCommand filterBtnClickedCommand;
+        private RelayCommand delteBtnClickedCommand;
+        private StockEntryViewModel selectedItem;
+
+        public string Filter
+        {
+            get { return filter; }
+            set { filter = value; OnChange("Filter"); }
+        }
+
+        public RelayCommand DelteBtnClickedCommand
+        {
+            get { return delteBtnClickedCommand; }
+            set { delteBtnClickedCommand = value; }
+        }
+
+        public RelayCommand FilterBtnClickedCommand
+        {
+            get { return filterBtnClickedCommand; }
+            set { filterBtnClickedCommand = value; }
+        }
 
         public Array Currencies
         {
             get {  return Enum.GetValues(typeof(Currencies));}
         }
 
-        public Currencies SelectedCurrrency
+        public ObservableCollection<String> UnfilteredItemNames
         {
-            get { return SelectedCurrrency; }
-            set {
-                SelectedCurrrency = value;
-                OnChange("SelectedCurrency");
-                StartConvertion();
-            }  
-       }
-
-        private void StartConvertion()
-        {
-            foreach (var item in Items)
-            {
-                item.CalculateSalesPriceFromEuro(SelectedCurrrency);
-            }
+            get { return unfilteredItemNames; }
+            set { unfilteredItemNames = value; }
         }
 
-        private ObservableCollection<StockEntryViewModel> items = new ObservableCollection<StockEntryViewModel>();
-        private Currencies selectedCurrency;
-        //private List<StockEntryViewModel> stock;
-
-        public ObservableCollection<StockEntryViewModel> Items
+        public ObservableCollection<StockEntryViewModel> UnfilteredItems
         {
             get { return items; }
-            set { items value; }
+            set { items = value; }
         }
+
+        public ObservableCollection<StockEntryViewModel> FilteredItems
+        {
+            get { return filteredItems; }
+            set { filteredItems = value; }
+        }
+
+       // public Currencies SelectedCurrrency
+       // {
+       //     get { return SelectedCurrrency; }
+       //     set {
+       //         SelectedCurrrency = value;
+       //         OnChange("SelectedCurrency");
+       //         StartConvertion();
+       //     }  
+       //}
+
+       // private void StartConvertion()
+       // {
+       //     foreach (var item in Items)
+       //     {
+       //         item.CalculateSalesPriceFromEuro(SelectedCurrrency);
+       //     }
+       // }
 
         public MainViewModel()
         {
-            SampleManager manager = new SampleManager();
-            //stock = manager.CurrentStock.OnStock;
+            UnfilteredItemNames.Add(showAll);
+            LoadData();
+            filter = showAll;
+            FilterData(); 
+            DelteBtnClickedCommand = new RelayCommand(DelteItem);
+            FilterBtnClickedCommand = new RelayCommand(FilterData);
 
+        }
+
+        private void DelteItem()
+        {
+            DeleteData(selectedItem);
+            UnfilteredItems.Remove(selectedItem);
+        }
+
+        private void FilterData()
+        {
+            FilteredItems.Clear();
+            foreach (var item in UnfilteredItems)
+            {
+                if (item.Name.Equals(Filter) || Filter.Equals(showAll))
+                {
+                    FilteredItems.Add(item);
+                }
+            }
+        }
+
+        private void LoadData()
+        {
             foreach (var item in manager.CurrentStock.OnStock)
             {
-                Items.Add(new StockEntryViewModel(item));
+                UnfilteredItems.Add(new StockEntryViewModel(item)); 
+                UnfilteredItemNames.Add(item.SoftwarePackage.Name);
             }
+        }
 
+        private void DeleteData(StockEntryViewModel toDelete)
+        {
+            foreach (var item in manager.CurrentStock.OnStock)
+            {
+                if (item.SoftwarePackage.Name.Equals(toDelete.Name) && item.SoftwarePackage.Category.Name.Equals(toDelete.Category))
+                {
+                    manager.CurrentStock.OnStock.Remove(item);
+                    break;
+                }
+            }
         }
     }
 }

@@ -4,8 +4,6 @@ namespace Dojo3.ViewModel
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
-        #region INotifyPropertyChanged Members
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnChange(string propertyname)
@@ -15,7 +13,5 @@ namespace Dojo3.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
             }
         }
-
-        #endregion
     }
 }

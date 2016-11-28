@@ -81,11 +81,11 @@ namespace Dojo3.ViewModel
             purchasepriceiIEuro = entry.SoftwarePackage.PurchasePrice;
         }
 
-        public void CalculateSalesPriceFromEuro(Currencies currency)
-        {
-            this.SalesPrice = CurrencyConverter.ConvertFromEuroTo(currency, salespriceInEuro);
-            this.PurchasePrice = CurrencyConverter.ConvertFromEuroTo(currency, purchasepriceiIEuro);
-        }
+        //public void CalculateSalesPriceFromEuro(Currencies currency)
+        //{
+        //    this.SalesPrice = CurrencyConverter.ConvertFromEuroTo(currency, salespriceInEuro);
+        //    this.PurchasePrice = CurrencyConverter.ConvertFromEuroTo(currency, purchasepriceiIEuro);
+        //}
 
     }
 }
