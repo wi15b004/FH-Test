@@ -1,4 +1,7 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using System.Collections.ObjectModel;
+using DataProvider;
 
 namespace WpfApplication1.ViewModel
 {
@@ -19,16 +22,21 @@ namespace WpfApplication1.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
+        /// 
+
+        public RelayCommand AddBtnCmd { get; set; }
+        public RelayCommand LoadBtnCmd { get; set; }
+        public RelayCommand SaveBtnCmd { get; set; }
+
+        private ObservableCollection<PersonVM> persons = new ObservableCollection<PersonVM>();
+
+        public DataHandler dh { get; set; }
+
+        
+
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+           
         }
     }
 }
