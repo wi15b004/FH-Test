@@ -8,5 +8,8 @@ namespace DataProvider
 {
     class DataHandler
     {
+        static void Main(string[] args)
+        {
+        }
     }
 }
