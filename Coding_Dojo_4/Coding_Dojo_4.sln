@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coding_Dojo_4", "WpfApplication1\Coding_Dojo_4.csproj", "{A2C9C854-1ABC-4814-AD80-46AA199DC65D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProvider", "DataProvider\DataProvider.csproj", "{E79DF4B2-D0B5-4B0C-85FB-FC62659FC728}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProvider", "DataProvider\DataProvider.csproj", "{6AA577B1-06E4-4AF3-B365-473B46F4EC68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{A2C9C854-1ABC-4814-AD80-46AA199DC65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2C9C854-1ABC-4814-AD80-46AA199DC65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2C9C854-1ABC-4814-AD80-46AA199DC65D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E79DF4B2-D0B5-4B0C-85FB-FC62659FC728}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E79DF4B2-D0B5-4B0C-85FB-FC62659FC728}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E79DF4B2-D0B5-4B0C-85FB-FC62659FC728}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E79DF4B2-D0B5-4B0C-85FB-FC62659FC728}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AA577B1-06E4-4AF3-B365-473B46F4EC68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AA577B1-06E4-4AF3-B365-473B46F4EC68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AA577B1-06E4-4AF3-B365-473B46F4EC68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AA577B1-06E4-4AF3-B365-473B46F4EC68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

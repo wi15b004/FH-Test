@@ -1,4 +1,4 @@
-﻿
+﻿using DataProvider.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace WpfApplication1.ViewModel
 {
     class PersonVM
     {
-       // private Person per;
+        private Person per;
 
 
     }
