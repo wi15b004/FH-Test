@@ -8,5 +8,8 @@ namespace DataProvider.Model
 {
     class Person
     {
+
+
+
     }
 }

@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="MainWindow" Height="350" Width="525">
+    <!-- <Window.DataContext>
+        <ViewModel:MainViewModel/>
+    </Window.DataContext> -->
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -28,13 +32,15 @@
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="1" Content="Firstname" Margin="10" />
-            <TextBox Grid.Column="1" Grid.Row="1" Height="25" Width="100" Margin="10" Text="{Binding Firstname}"/>
             <Label Grid.Column="0" Grid.Row="2" Content="Lastname" Margin="10" />
-            <TextBox Grid.Column="1" Grid.Row="2" Height="25" Width="100" Margin="10" Text="{Binding Lastname}"/>
             <Label Grid.Column="0" Grid.Row="3" Content="SocialSecurityNumber" Margin="10" />
-            <TextBox Grid.Column="1" Grid.Row="3" Height="25" Width="100" Margin="10" Text="{Binding SSNumber}"/>
             <Label Grid.Column="0" Grid.Row="4" Content="Birthdate" Margin="10" />
-            <DatePicker  Grid.Column="1" Grid.Row="4" Height="25" Width="100" Margin="10" SelectedDate="{Binding Birthdate, StringFormat=yyyy-MM-dd}"/>
+            
+            <TextBox Grid.Column="1" Grid.Row="1" Height="25" Width="100" Margin="10" Text="{Binding NewFirstname}"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Height="25" Width="100" Margin="10" Text="{Binding NewLastname}"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Height="25" Width="100" Margin="10" Text="{Binding NewSSN}"/>
+            <DatePicker  Grid.Column="1" Grid.Row="4" Height="25" Width="100" Margin="10" SelectedDate="{Binding NewBirthdate, StringFormat=yyyy-MM-dd}"/>
+            
             <Button Command="{Binding AddBtnCommand}" Content="Add" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Height="25" Width="80" Margin="10" HorizontalAlignment="Right" />
         </Grid>
 
