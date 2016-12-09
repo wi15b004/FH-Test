@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="200*"/>
+            <ColumnDefinition MinWidth="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -26,7 +27,6 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-
             <Label Grid.Column="0" Grid.Row="1" Content="Firstname" Margin="10" />
             <TextBox Grid.Column="1" Grid.Row="1" Height="25" Width="100" Margin="10" Text="{Binding Firstname}"/>
             <Label Grid.Column="0" Grid.Row="2" Content="Lastname" Margin="10" />
@@ -35,8 +35,29 @@
             <TextBox Grid.Column="1" Grid.Row="3" Height="25" Width="100" Margin="10" Text="{Binding SSN}"/>
             <Label Grid.Column="0" Grid.Row="4" Content="Birthdate" Margin="10" />
             <DatePicker  Grid.Column="1" Grid.Row="4" Height="25" Width="100" Margin="10" SelectedDate="{Binding Birthdate, StringFormat=yyyy-MM-dd}"/>
-            <Button Command="{Binding AddToListbtnCommand}" Content="Add" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Height="25" Width="80" Margin="10" HorizontalAlignment="Right" />
-
+            <Button Command="{Binding AddBtnCommand}" Content="Add" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Height="25" Width="80" Margin="10" HorizontalAlignment="Right" />
         </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal"/>
+            <DataGrid Margin="10" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Persons}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding SSN}"  Header="Social Security Number"/>
+                    <DataGridTextColumn Binding="{Binding Lastname}" Header="Lastname"/>
+                    <DataGridTextColumn Binding="{Binding Firstname}" Header="Firstname"/>
+                    <DataGridTextColumn Binding="{Binding Birthdate}" Header="Birthdate"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Command="{Binding LoadBtnClickedCommand}" Content="Load Data" Height="25" Width="70" Margin="10" />
+                <Button Command="{Binding SaveBtnClickedCommand}" Content="Save Data" Height="25" Width="70" Margin="10" />
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </Window>
