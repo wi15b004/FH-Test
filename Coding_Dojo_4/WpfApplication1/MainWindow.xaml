@@ -32,7 +32,7 @@
             <Label Grid.Column="0" Grid.Row="2" Content="Lastname" Margin="10" />
             <TextBox Grid.Column="1" Grid.Row="2" Height="25" Width="100" Margin="10" Text="{Binding Lastname}"/>
             <Label Grid.Column="0" Grid.Row="3" Content="SocialSecurityNumber" Margin="10" />
-            <TextBox Grid.Column="1" Grid.Row="3" Height="25" Width="100" Margin="10" Text="{Binding SSN}"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Height="25" Width="100" Margin="10" Text="{Binding SSNumber}"/>
             <Label Grid.Column="0" Grid.Row="4" Content="Birthdate" Margin="10" />
             <DatePicker  Grid.Column="1" Grid.Row="4" Height="25" Width="100" Margin="10" SelectedDate="{Binding Birthdate, StringFormat=yyyy-MM-dd}"/>
             <Button Command="{Binding AddBtnCommand}" Content="Add" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Height="25" Width="80" Margin="10" HorizontalAlignment="Right" />
