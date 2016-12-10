@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using DataProvider;
 using System;
+using System.Globalization;
 
 namespace WpfApplication1.ViewModel
 {
@@ -25,9 +26,9 @@ namespace WpfApplication1.ViewModel
         /// </summary>
         /// 
 
-        public RelayCommand AddBtnCmd { get; set; }
-        public RelayCommand LoadBtnCmd { get; set; }
-        public RelayCommand SaveBtnCmd { get; set; }
+        private RelayCommand AddBtnCmd { get; set; }
+        private RelayCommand LoadBtnCmd { get; set; }
+        private RelayCommand SaveBtnCmd { get; set; }
 
         private ObservableCollection<PersonVM> persons = new ObservableCollection<PersonVM>();
 
@@ -113,9 +114,9 @@ namespace WpfApplication1.ViewModel
         {
             dh = new DataHandler("");
 
-            AddBtnCmd = new RelayCommand(AddBtnClicked, () => { return true; });
-            SaveBtnCmd = new RelayCommand(SaveBtnClicked, () => { return true; });
-            LoadBtnCmd = new RelayCommand(LoadBtnClicked, () => { return dh.CheckIfFileExists(); });
+            AddBtnCmd = new RelayCommand(AddBtnClicked, () => { return NewLastname.Length > 2; }); //return true;
+            SaveBtnCmd = new RelayCommand(SaveBtnClicked, () => { return Persons.Count > 0; }); //return true;
+            LoadBtnCmd = new RelayCommand(LoadBtnClicked, () => { return dh.CheckIfFileExists(); }); //return true;
         }
 
         private void AddBtnClicked()
