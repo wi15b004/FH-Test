@@ -114,8 +114,8 @@ namespace WpfApplication1.ViewModel
             dh = new DataHandler("");
 
             AddBtnCmd = new RelayCommand(AddBtnClicked, () => { return true; });
-            SaveBtnCmd = new RelayCommand(SaveBtnClicked, SaveBtnExecuted);
-            LoadBtnCmd = new RelayCommand(LoadBtnClicked, () => { dh.CheckIfFileExists() });
+            SaveBtnCmd = new RelayCommand(SaveBtnClicked, () => { return true; });
+            LoadBtnCmd = new RelayCommand(LoadBtnClicked, () => { return dh.CheckIfFileExists(); });
         }
 
         private void AddBtnClicked()
@@ -140,12 +140,5 @@ namespace WpfApplication1.ViewModel
                 Persons.Add(new PersonVM(item.Firstname, item.Lastname, item.Ssn, item.Birthdate));
             }
         }
-
-        private bool SaveBtnExecuted()
-        {
-            return persons.Count > 0;
-        }
-
-
     }
 }
