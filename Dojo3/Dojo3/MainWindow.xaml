@@ -4,6 +4,9 @@
         xmlns:local="clr-namespace:Dojo3"
         xmlns:vm="clr-namespace:Dojo3.ViewModel"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <converters:StockToSymbol x:Key="StockToSymbol"/>
+    </Window.Resources>
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
@@ -16,14 +19,14 @@
 
         <StackPanel Orientation="Horizontal">
             <Label Content="Filter" VerticalAlignment="Center" Margin="10,0"/>
-            <ComboBox Height="25" Width="150" ItemsSource="{Binding UnfilteredItemNames}" SelectedItem="{Binding Filter}" />
-            <Button Grid.Row="2" Command="{Binding FilterBtnClickedCommand}" Content="Search" Height="25" Width="100" HorizontalAlignment="Right" Margin="10"/>
+            <ComboBox Height="25" Width="150" ItemsSource="{Binding FilteredList}" SelectedItem="{Binding SelectedSearchItem}" />
+            <Button Grid.Row="2" Command="{Binding SearchBtn}" Content="Search" Height="25" Width="100" HorizontalAlignment="Right" Margin="10"/>
         </StackPanel>
 
         <DataGrid HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding Items}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Group" Binding="{Binding Group}"/>
+                <DataGridTextColumn Header="Group" Binding="{Binding Category}"/>
                 <DataGridTextColumn Header="Salesprice" Binding="{Binding SalesPrice}"/>
                 <DataGridTextColumn Header="Purchaseprice" Binding="{Binding PurchasePrice}"/>
                 <DataGridTemplateColumn Header="onStock">
@@ -37,7 +40,7 @@
         </DataGrid>
         <ComboBox HorizontalAlignment="Left" Margin="5,0" VerticalAlignment="Center" Width="120" ItemsSource="{Binding Currencies}" SelectedItem="{Binding Selectedcurrency}"/>
 
-        <Button Grid.Row="2" Command="{Binding DelteBtnClickedCommand}" Content="Delete" Height="25" Width="100" HorizontalAlignment="Right" Margin="10"/>
+        <Button Grid.Row="2" Command="{Binding ClearBtn}" Content="Delete" Height="25" Width="100" HorizontalAlignment="Right" Margin="10"/>
 
     </Grid>
 </Window>
