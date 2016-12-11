@@ -78,11 +78,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\IntTobrushConverter.cs" />
-    <Compile Include="Converters\RelayCommand.cs" />
-    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="Converters\StockToSymbol.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\StockEntryViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -1,6 +1,7 @@
 ﻿using CodingDojo4DataLib;
 using CodingDojo4DataLib.Converter;
 using System;
+using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,84 +9,78 @@ using System.Threading.Tasks;
 
 namespace Dojo3.ViewModel
 {
-    class StockEntryViewModel : BaseViewModel
+    class StockEntryViewModel : ViewModelBase
     {
 
         private StockEntry stockEntry;
-
-        private double purchasepriceiIEuro;
+        //private double purchasepriceiIEuro;
         private double salespriceInEuro;
 
-        public String Name
+        public int Stock
+        {
+            get { return stockEntry.Amount; }
+            set { stockEntry.Amount = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string Name
         {
             get { return stockEntry.SoftwarePackage.Name; }
             set
             {
                 stockEntry.SoftwarePackage.Name = value;
-                OnChange("Name");
+                RaisePropertyChanged();
             }
         }
 
-        public String Category
+        public string category
         {
             get { return stockEntry.SoftwarePackage.Category.Name; }
             set
             {
                 stockEntry.SoftwarePackage.Category.Name = value;
-                OnChange("Category");
+                RaisePropertyChanged();
             }
         }
 
-        public double SalesPrice {
-
-            get { return stockEntry.SoftwarePackage.SalesPrice;  }
+        public double SalesPrice
+        {
+            get { return stockEntry.SoftwarePackage.SalesPrice; }
             set
             {
                 stockEntry.SoftwarePackage.SalesPrice = value;
-                OnChange("SalesPrice");
-            }    
+                RaisePropertyChanged();
+            }
         }
-
         public double PurchasePrice
         {
             get { return stockEntry.SoftwarePackage.PurchasePrice; }
             set
             {
                 stockEntry.SoftwarePackage.PurchasePrice = value;
-                OnChange("PurchasePrice");
+                RaisePropertyChanged();
             }
         }
 
-        public int OnStock
+        public override string ToString()
         {
-            get { return stockEntry.Amount; }
-            set
-            {
-                stockEntry.Amount = value;
-                OnChange("OnStock");
-            }
-        }
-
-        public StockEntryViewModel()
-        {
-            this.stockEntry = new StockEntry();
-            this.stockEntry.SoftwarePackage = new Software("");
-            this.stockEntry.SoftwarePackage = new Group();
-            this.stockEntry.SoftwarePackage.Name = "name";
+            return Name;
         }
 
         public StockEntryViewModel(StockEntry entry)
         {
-            this.stockEntry = entry;
+            stockEntry = entry;
             salespriceInEuro = entry.SoftwarePackage.SalesPrice;
-            purchasepriceiIEuro = entry.SoftwarePackage.PurchasePrice;
         }
 
-        //public void CalculateSalesPriceFromEuro(Currencies currency)
-        //{
-        //    this.SalesPrice = CurrencyConverter.ConvertFromEuroTo(currency, salespriceInEuro);
-        //    this.PurchasePrice = CurrencyConverter.ConvertFromEuroTo(currency, purchasepriceiIEuro);
-        //}
+        public StockEntryViewModel()
 
+        {
+            stockEntry = new StockEntry();
+            stockEntry.SoftwarePackage = new Software("");
+            stockEntry.SoftwarePackage.Category = new Group();
+            stockEntry.SoftwarePackage.Category.Name = "dummy";
+        }
     }
 }

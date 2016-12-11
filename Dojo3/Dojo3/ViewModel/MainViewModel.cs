@@ -1,10 +1,4 @@
-using CodingDojo4DataLib;
-using CodingDojo4DataLib.Converter;
-using Dojo3.Converters;
 using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Dojo3.ViewModel
 {
@@ -20,125 +14,32 @@ namespace Dojo3.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    class MainViewModel : BaseViewModel
+    public class MainViewModel : ViewModelBase
     {
-        private SampleManager manager = new SampleManager(); 
-        private const string showAll = "show All";
-        private ObservableCollection<StockEntryViewModel> items = new ObservableCollection<StockEntryViewModel>();
-        private ObservableCollection<StockEntryViewModel> filteredItems = new ObservableCollection<StockEntryViewModel>();
-        private ObservableCollection<String> unfilteredItemNames = new ObservableCollection<String>();
-        private string filter;
-        private RelayCommand filterBtnClickedCommand;
-        private RelayCommand delteBtnClickedCommand;
-        private StockEntryViewModel selectedItem;
+        /// <summary>
+        /// Initializes a new instance of the MainViewModel class.
+        /// </summary>
 
-        public string Filter
-        {
-            get { return filter; }
-            set { filter = value; OnChange("Filter"); }
-        }
-
-        public RelayCommand DelteBtnClickedCommand
-        {
-            get { return delteBtnClickedCommand; }
-            set { delteBtnClickedCommand = value; }
-        }
-
-        public RelayCommand FilterBtnClickedCommand
-        {
-            get { return filterBtnClickedCommand; }
-            set { filterBtnClickedCommand = value; }
-        }
-
-        public Array Currencies
-        {
-            get {  return Enum.GetValues(typeof(Currencies));}
-        }
-
-        public ObservableCollection<String> UnfilteredItemNames
-        {
-            get { return unfilteredItemNames; }
-            set { unfilteredItemNames = value; }
-        }
-
-        public ObservableCollection<StockEntryViewModel> UnfilteredItems
-        {
-            get { return items; }
-            set { items = value; }
-        }
-
-        public ObservableCollection<StockEntryViewModel> FilteredItems
-        {
-            get { return filteredItems; }
-            set { filteredItems = value; }
-        }
-
-       // public Currencies SelectedCurrrency
-       // {
-       //     get { return SelectedCurrrency; }
-       //     set {
-       //         SelectedCurrrency = value;
-       //         OnChange("SelectedCurrency");
-       //         StartConvertion();
-       //     }  
-       //}
-
-       // private void StartConvertion()
-       // {
-       //     foreach (var item in Items)
-       //     {
-       //         item.CalculateSalesPriceFromEuro(SelectedCurrrency);
-       //     }
-       // }
+        private const string showAll = "Show All";
+        private List<StockEntry> stock;
+        private ObservableCollection<StockEntryVm> saleitems = new ObservableCollection<StockEntryVm>(); //Vollständige Produktliste (Backup)
+        private ObservableCollection<StockEntryVm> filteredSaleitems = new ObservableCollection<StockEntryVm>(); //Gefilterte Produktliste
+        private string selectedSearchItem; //Auswahl Combobox
+        private ObservableCollection<string> filteredList = new ObservableCollection<string>(); //Inhalt Combobox (Produktliste + ShowAll)
+        private StockEntryVm selectedSalesItem; //Auswahl Datagrid
+        public RelayCommand SearchBtn { get; set; }
+        public RelayCommand ClearBtn { get; set; }
 
         public MainViewModel()
         {
-            UnfilteredItemNames.Add(showAll);
-            LoadData();
-            filter = showAll;
-            FilterData(); 
-            DelteBtnClickedCommand = new RelayCommand(DelteItem);
-            FilterBtnClickedCommand = new RelayCommand(FilterData);
-
-        }
-
-        private void DelteItem()
-        {
-            DeleteData(selectedItem);
-            UnfilteredItems.Remove(selectedItem);
-        }
-
-        private void FilterData()
-        {
-            FilteredItems.Clear();
-            foreach (var item in UnfilteredItems)
-            {
-                if (item.Name.Equals(Filter) || Filter.Equals(showAll))
-                {
-                    FilteredItems.Add(item);
-                }
-            }
-        }
-
-        private void LoadData()
-        {
-            foreach (var item in manager.CurrentStock.OnStock)
-            {
-                UnfilteredItems.Add(new StockEntryViewModel(item)); 
-                UnfilteredItemNames.Add(item.SoftwarePackage.Name);
-            }
-        }
-
-        private void DeleteData(StockEntryViewModel toDelete)
-        {
-            foreach (var item in manager.CurrentStock.OnStock)
-            {
-                if (item.SoftwarePackage.Name.Equals(toDelete.Name) && item.SoftwarePackage.Category.Name.Equals(toDelete.Category))
-                {
-                    manager.CurrentStock.OnStock.Remove(item);
-                    break;
-                }
-            }
+            ////if (IsInDesignMode)
+            ////{
+            ////    // Code runs in Blend --> create design time data.
+            ////}
+            ////else
+            ////{
+            ////    // Code runs "for real"
+            ////}
         }
     }
 }
