@@ -26,9 +26,9 @@ namespace WpfApplication1.ViewModel
         /// </summary>
         /// 
 
-        private RelayCommand AddBtnCmd { get; set; }
-        private RelayCommand LoadBtnCmd { get; set; }
-        private RelayCommand SaveBtnCmd { get; set; }
+        private RelayCommand AddBtnCommand { get; set; }
+        private RelayCommand LoadBtnCommand { get; set; }
+        private RelayCommand SaveBtnCommand { get; set; }
 
         private ObservableCollection<PersonVM> persons = new ObservableCollection<PersonVM>();
 
@@ -114,17 +114,17 @@ namespace WpfApplication1.ViewModel
         {
             dh = new DataHandler("");
 
-            AddBtnCmd = new RelayCommand(AddBtnClicked, () => { return NewLastname.Length > 2; }); //return true;
-            SaveBtnCmd = new RelayCommand(SaveBtnClicked, () => { return Persons.Count > 0; }); //return true;
-            LoadBtnCmd = new RelayCommand(LoadBtnClicked, () => { return dh.CheckIfFileExists(); }); //return true;
+            AddBtnCommand = new RelayCommand(AddBtnCmd, () => { return NewLastname.Length > 2; }); //return true;
+            SaveBtnCommand = new RelayCommand(SaveBtnCmd, () => { return Persons.Count > 0; }); //return true;
+            LoadBtnCommand = new RelayCommand(LoadBtnCmd, () => { return dh.CheckIfFileExists(); }); //return true;
         }
 
-        private void AddBtnClicked()
+        private void AddBtnCmd()
         {
             Persons.Add(new PersonVM(NewFirstname, NewLastname, NewSsn, NewBirthdate));
         }
 
-        private void SaveBtnClicked()
+        private void SaveBtnCmd()
         {
             dh.Delete();
             foreach (var item in persons)
@@ -133,7 +133,7 @@ namespace WpfApplication1.ViewModel
             }
         }
 
-        private void LoadBtnClicked()
+        private void LoadBtnCmd()
         {
             Persons.Clear();
             foreach (var item in dh.Load())
