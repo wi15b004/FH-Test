@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coding_Dojo_5"
         mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Chat Name" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox Grid.Column="1" VerticalAlignment="Center" Text="{Binding ChatName}"/>
+            <Button Content="Connect" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding ConnectBtnCmd}"/>
+        </Grid>
+        <Label Grid.Row="1" Content="Messages" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <ListBox Grid.Row="2" ItemsSource="{Binding ReceivedMessages}"/>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Message" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox Grid.Column="1" VerticalAlignment="Center" Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Send" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding SendBtnCmd}"/>
+        </Grid>
     </Grid>
 </Window>
