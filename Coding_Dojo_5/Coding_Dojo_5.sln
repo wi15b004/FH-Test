@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coding_Dojo_5", "Coding_Dojo_5\Coding_Dojo_5.csproj", "{04B6423D-BC26-474D-8F23-6D87BE51081F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Coding_Dojo_5\Client.csproj", "{04B6423D-BC26-474D-8F23-6D87BE51081F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{A01615FB-5177-44EC-B6AE-A1DA009EE8FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHandler", "DataHandler\DataHandler.csproj", "{DE8C69D1-C77A-4F09-A81D-61F3C6AE4C96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{04B6423D-BC26-474D-8F23-6D87BE51081F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04B6423D-BC26-474D-8F23-6D87BE51081F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04B6423D-BC26-474D-8F23-6D87BE51081F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A01615FB-5177-44EC-B6AE-A1DA009EE8FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A01615FB-5177-44EC-B6AE-A1DA009EE8FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A01615FB-5177-44EC-B6AE-A1DA009EE8FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A01615FB-5177-44EC-B6AE-A1DA009EE8FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE8C69D1-C77A-4F09-A81D-61F3C6AE4C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE8C69D1-C77A-4F09-A81D-61F3C6AE4C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE8C69D1-C77A-4F09-A81D-61F3C6AE4C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE8C69D1-C77A-4F09-A81D-61F3C6AE4C96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
