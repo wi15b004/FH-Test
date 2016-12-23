@@ -7,7 +7,15 @@
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+
+    <Window.Resources> <!-- Designänderung -->
+        <Style x:Key ="GridBorders">
+            <Setter Property="Grid.ShowGridLines" Value="True"/>
+            <Setter Property="Grid.Margin" Value="10,5"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Style="{DynamicResource GridBorders}">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
