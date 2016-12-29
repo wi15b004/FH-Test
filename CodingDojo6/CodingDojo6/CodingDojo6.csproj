@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\ItemVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
@@ -117,6 +118,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\lego_bagger.png" />
+    <Resource Include="Images\lego_kran.png" />
+    <Resource Include="Images\lego_porsche.png" />
+    <Resource Include="Images\lego_radlader.png" />
+    <Resource Include="Images\playmobil_auto.jpg" />
+    <Resource Include="Images\playmobil_bad.jpg" />
+    <Resource Include="Images\playmobil_camper.jpg" />
+    <Resource Include="Images\playmobil_spielplatz.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
