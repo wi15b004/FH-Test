@@ -7,10 +7,35 @@
         xmlns:ViewModel="clr-namespace:CodingDojo6.ViewModel" x:Class="CodingDojo6.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    
     <Window.DataContext>
         <ViewModel:MainViewModel/>
     </Window.DataContext>
 
+    <Window.Resources>
+        <DataTemplate x:Key="NormalLayout">
+            <Border BorderBrush="DarkGray" BorderThickness="3" CornerRadius="5" Width="200">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding Image}" Height="50" Margin="5"/>
+                    <Label Content="{Binding Description}" VerticalAlignment="Center" Margin="5"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="SelectedLayout">
+            <StackPanel>
+                <Border BorderBrush="DarkGray" BorderThickness="3" CornerRadius="5" Width="200">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Image}" Height="50" Margin="5"/>
+                            <Label Content="{Binding Description}" VerticalAlignment="Center" Margin="5"/>
+                        </StackPanel>
+                        <Button Content="Buy" Command="{Binding BuyBtnCmd, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" Height="30" Width="200" HorizontalAlignment="Center" Margin="5"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -20,46 +45,45 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-    </Grid>
+   
+        <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" ItemTemplate="{StaticResource NormalLayout}"/>
 
-    <ListBox ItemSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" ItemTemplate="{StaticResource NormalLayout}"/>
-
-    <ItemsControl Grid.Column="1" ItemsSource="{Binding CurrentItem.Items}">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel Orientation="Horizontal"/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <StackPanel>
-                    <Border BorderBrush="DarkGray" BorderThickness="3" CornerRadius="5" Width="200" Margin="10">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding Image}" Height="50" Margin="5"/>
-                                <Label Content="{Binding Description}" VerticalAlignment="Center" Margin="5"/>
-                                <Label Content="{Binding AgeRecommendation}" VerticalAlignment="Center"/>
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding CurrentItem.Items}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Border BorderBrush="DarkGray" BorderThickness="3" CornerRadius="5" Width="200" Margin="10">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Image}" Height="50" Margin="5"/>
+                                    <Label Content="{Binding Description}" VerticalAlignment="Center" Margin="5"/>
+                                    <Label Content="{Binding AgeRecommendation}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <Button Content="Buy" Command="{Binding DataContext.BuyBtnCmd, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding}" Height="30" Width="200" HorizontalAlignment="Center" Margin="5"/>
                             </StackPanel>
-                            <Button Content="Buy" Command="{Binding DataContext.BuyBtnCmd, RelativeSource={RelativeSource AncestorType=ItemControl}}" 
-                                    CommandParameter="{Binding}" Height="30" Width="200" HorizontalAlignment="Center" Margin="5"/>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
+                        </Border>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
-    <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemScource="{Binding Cart}">
-        <ListBox.ItemsPanel>
-            <ItemsPanelTemplate>
-                <StackPanel Orientation="Horizontal"/>
-            </ItemsPanelTemplate>
-        </ListBox.ItemsPanel>
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <Image Source="{Binding Image}" Height="50"/>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
-
+        <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Cart}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding Image}" Height="50"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
 </Window>
