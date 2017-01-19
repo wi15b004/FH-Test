@@ -12,9 +12,11 @@ namespace TextExample.Communication
     {
         private Socket serverSocket;
         private List<ClientHandler> clients = new List<ClientHandler>();
+        private Action<string> informer;
 
-        public Server()
+        public Server(Action<string> informer)
         {
+            this.informer = informer;
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             serverSocket.Bind(new IPEndPoint(IPAddress.Loopback, 10100)); //loopback is localhost
             serverSocket.Listen(5);
@@ -25,7 +27,7 @@ namespace TextExample.Communication
         {
             while(true)
             {
-                clients.Add(new ClientHandler(serverSocket.Accept()));
+                clients.Add(new ClientHandler(serverSocket.Accept(), informer));
             }
         }
 
